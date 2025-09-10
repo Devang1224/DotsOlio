@@ -69,6 +69,7 @@ const SearchItem = ({ data, index, searchQuery }: SearchItemProps) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: index * 0.06 }}
       className="flex items-center gap-4 border-[3px] border-x-0 border-t-0 border-b-primary-20 py-3 px-6 cursor-pointer hover:bg-primary-20 group"
+      key={data.id}
     >
       <div className="w-[40px] h-[40px] bg-[#E7E7E7] rounded-lg overflow-hidden flex justify-center items-center">
         {getSearchItemImage(data)}

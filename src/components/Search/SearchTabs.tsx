@@ -119,6 +119,7 @@ const SearchTabs = ({ setActiveTab, activeTab, filteredData }: SearchTabsProps) 
   },[filteredData])
 
 
+
   return (
     <div className="px-3 pt-2 flex items-start justify-between border-[3px] border-t-0 border-b-primary-20">
       <div className="flex items-center gap-4 px-2  hide-scrollbar ">
@@ -129,10 +130,10 @@ const SearchTabs = ({ setActiveTab, activeTab, filteredData }: SearchTabsProps) 
           animate={{opacity:1}}
           exit={{opacity:0,transition:{duration:0.3}}}
           transition={{duration:0.3}}
-            onClick={() => setActiveTab(item.name)}
+            onClick={() => setActiveTab(item.type)}
             className={clsx(
               " pb-2 relative flex gap-1 items-center justify-center  cursor-pointer border-3 px-1 after:content-[''] after:absolute after:w-full after:h-[0px] after:bg-black after:bottom-[-3px]",
-              activeTab === item.name && "after:h-[2px] "
+              activeTab === item.type && "after:h-[2px] "
             )}
             key={index}
           >
@@ -140,14 +141,14 @@ const SearchTabs = ({ setActiveTab, activeTab, filteredData }: SearchTabsProps) 
               <item.icon
                 className={clsx(
                   " w-[18px]",
-                  activeTab === item.name ? "text-black" : "text-primary-50"
+                  activeTab === item.type ? "text-black" : "text-primary-50"
                 )}
               />
             )}
             <p
               className={clsx(
                 "font-medium",
-                activeTab === item.name ? "text-black" : "text-primary-50"
+                activeTab === item.type ? "text-black" : "text-primary-50"
               )}
             >
               {item.name}

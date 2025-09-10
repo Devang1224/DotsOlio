@@ -10,7 +10,7 @@ import Loader from "../../ui/Loader";
 
 
 const SearchBar = () => {
-  const [activeTab, setActiveTab] = useState("All");
+  const [activeTab, setActiveTab] = useState("all");
   const [searchInput, setSearchInput] = useState("");
   const [filteredData,setFilteredData] = useState<SearchData[]>([]);
   const [isLoading,setIsLoading] = useState(false);
@@ -38,7 +38,7 @@ const handleFetchResults = async (value:string)=>{
      console.log(res);
     setFilteredData([...res]);
   }catch(err){
-
+     console.error("Failed to fetch data:", err);
   }finally{
     setIsLoading(false);
   }
@@ -55,6 +55,7 @@ const handleSearch = (query:string)=>{
   }
    debouncedSearch(query);
 }
+
 
 
 

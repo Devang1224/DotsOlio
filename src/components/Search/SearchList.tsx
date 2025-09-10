@@ -7,7 +7,7 @@ import {motion,easeInOut} from "framer-motion";
 interface SearchListProps {
     searchData:SearchData[],
     searchQuery:string,
-    isLoading:boolean
+    isLoading:boolean,
 }
 const fadeInOut = (delay:number) => ({
   animate: {
@@ -62,14 +62,16 @@ const DummySearchItem = ({index}:DummySearchItemProps)=>{
 const SearchList = ({
     searchData,
     searchQuery,
-    isLoading
+    isLoading,
 }:SearchListProps) => {
   return (
+
+    
     <div className="max-h-[50vh] overflow-y-scroll  py-3 hide-scrollbar scroll-smooth">
              {isLoading && Array.from({ length: 6 }).map((_,i)=><DummySearchItem key={i} index={i}/>) }
 
               {!isLoading && searchData?.map((item,index) => (
-                <SearchItem data={item} key={item.id} index={index} searchQuery={searchQuery} />
+                 <SearchItem data={item} key={item.id} index={index} searchQuery={searchQuery} />
               ))}
 
               {
