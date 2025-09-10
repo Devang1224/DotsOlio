@@ -1,34 +1,24 @@
-import { useEffect, useState } from "react";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect } from "react";
 
-interface AnimateNumberProps {
-  value: number;     
+interface AnimatedNumberProps {
+  value: number;
   duration?: number; 
 }
 
-const AnimateNumber = ({ value, duration = 1000 }: AnimateNumberProps) => {
-  const [count, setCount] = useState(0);
+const AnimateNumber = ({ value, duration = 0.5 }: AnimatedNumberProps) => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.floor(latest));
 
   useEffect(() => {
-    const steps = value; 
-    const stepTime = duration / steps; 
-    let current = 0;
-
-    const interval = setInterval(() => {
-      current++;
-      setCount(current);
-
-      if (current >= value) {
-        clearInterval(interval);
-      }
-    }, stepTime);
-
-    return () => clearInterval(interval); 
-  }, [value, duration]);
+    const controls = animate(count, value, { duration });
+    return controls.stop; 
+  }, [value, duration, count]);
 
   return (
-    <span>
-      {count}
-    </span>
+    <motion.span>
+      {rounded}
+    </motion.span>
   );
 };
 

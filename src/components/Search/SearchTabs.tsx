@@ -77,16 +77,17 @@ const SearchTabs = ({ setActiveTab, activeTab, filteredData }: SearchTabsProps) 
 
   const handleUpdateTab = (tab, isActive:boolean) => {
     const typesSizes = getTypesSize();
+
     if (isActive) {
-      setTabs((prev) => prev.filter((tab) => tab.name != tab.name));
+      setTabs((prev) => prev.filter((item) => item.name != tab.name));
     } else {
       setTabs((prev) => (
         [
-          {...tab,[tab.name]:typesSizes[tab.type as SearchDataTypes] ?? 0},
-           prev.map((item)=>({
+          ...prev.map((item)=>({
             ...item,
-           value: item.type === "all" ? filteredData.length : typesSizes[item.type as SearchDataTypes] ?? 0,
-          }))
+            value: item.type === "all" ? filteredData.length : typesSizes[item.type as SearchDataTypes] ?? 0,
+          })),
+          {...tab,[tab.name]:typesSizes[tab.type as SearchDataTypes] ?? 0}
         ]
       ));
     }
@@ -112,7 +113,6 @@ const SearchTabs = ({ setActiveTab, activeTab, filteredData }: SearchTabsProps) 
 
   }
 
-console.log("tabs: ",tabs);
 
   useEffect(()=>{
        handleUpdateTabsData();
@@ -122,8 +122,13 @@ console.log("tabs: ",tabs);
   return (
     <div className="px-3 pt-2 flex items-start justify-between border-[3px] border-t-0 border-b-primary-20">
       <div className="flex items-center gap-4 px-2  hide-scrollbar ">
+        <AnimatePresence>
         {tabs?.map((item, index) => (
-          <button
+          <motion.button
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          exit={{opacity:0,transition:{duration:0.3}}}
+          transition={{duration:0.3}}
             onClick={() => setActiveTab(item.name)}
             className={clsx(
               " pb-2 relative flex gap-1 items-center justify-center  cursor-pointer border-3 px-1 after:content-[''] after:absolute after:w-full after:h-[0px] after:bg-black after:bottom-[-3px]",
@@ -150,10 +155,12 @@ console.log("tabs: ",tabs);
             <p className="text-[12px] text-primary-300 bg-primary-20 px-[5px] rounded-sm ml-[4px]">
               <AnimateNumber value={item.value}/>
             </p>
-          </button>
-        ))}
+          </motion.button>
+
+))}
+</AnimatePresence>
       </div>
-      <button className=" relative">
+      <div className=" relative">
         <Settings
           className={clsx("text-primary-50 w-[25px] cursor-pointer transition-all duration-300",isActiveSettings && "rotate-60 ")}
           onClick={() => setIsActiveSettings(!isActiveSettings)}
@@ -214,7 +221,7 @@ console.log("tabs: ",tabs);
             </motion.div>
           )}
         </AnimatePresence>
-      </button>
+      </div>
     </div>
   );
 };
