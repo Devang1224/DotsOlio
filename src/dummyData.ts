@@ -11,6 +11,7 @@ export const searchData:SearchData[] = [
     name:"Sophia Martinez",
     status:'Active 2d ago',
     type:'people',
+    activity:'wasActive',
 },
 {
     id:6,
@@ -18,6 +19,8 @@ export const searchData:SearchData[] = [
     name:"Liam Johnson",
     status:'Unactivated',
     type:'people',
+    activity:'inactive',
+
 },
 {
     id:7,
@@ -39,8 +42,10 @@ export const searchData:SearchData[] = [
     id:9,
     image:user2,
     name:"Emily Carter",
-    status:'Active 5h ago',
+    status:'Active',
     type:'people',
+    activity:'active',
+
 },
 {
     id:10,
@@ -64,6 +69,8 @@ export const searchData:SearchData[] = [
     name:"Daniel Brown",
     status:'Active just now',
     type:'people',
+    activity:'wasActive',
+
 },
 {
     id:13,

@@ -4,6 +4,7 @@ type PeopleSearchItem = {
   name: string;
   status: string;
   image: string;
+  activity: 'active' | 'inactive' | 'wasActive'
 };
 
 type FileSearchItem = {

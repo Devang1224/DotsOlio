@@ -10,6 +10,7 @@ import { getHighlightedText } from "../utils/highLightText";
 import { Check, Link, SquareArrowOutUpRight } from "lucide-react";
 import Tooltip from "./Tooltip";
 import { useState } from "react";
+import clsx from "clsx";
 
 
 interface SearchItemProps {
@@ -71,8 +72,12 @@ const SearchItem = ({ data, index, searchQuery }: SearchItemProps) => {
       className="flex items-center gap-4 border-[3px] border-x-0 border-t-0 border-b-primary-20 py-3 px-6 cursor-pointer hover:bg-primary-20 group"
       key={data.id}
     >
-      <div className="w-[40px] h-[40px] bg-[#E7E7E7] rounded-lg overflow-hidden flex justify-center items-center">
+      <div className='relative'>
+        <div className="w-[40px] h-[40px] bg-[#E7E7E7] rounded-lg overflow-hidden flex justify-center items-center">
         {getSearchItemImage(data)}
+        </div>
+         {data.type=='people' && <div className={clsx("w-[14px] h-[14px]  rounded-full border-2 border-white absolute bottom-0 right-0 translate-y-1 translate-x-1 z-20",
+                                                  data.activity=='inactive' && "bg-red-400",data.activity=='active' && "bg-green-400",data.activity=='wasActive' && "bg-yellow-400")} />}
       </div>
       <div className="flex flex-1 items-center justify-between">
         <div className="">
