@@ -19,7 +19,7 @@ const RadioBtn: React.FC<RadioButtonProps> = ({
   knobColor = "white",
   trackColor = "black",
   inActiveTrackColor='#E4E4E4',
-  inActiveKnobColor='white',
+   inActiveKnobColor= 'white',
   isActive = false,
   onClick,
 }) => {
@@ -38,7 +38,7 @@ const RadioBtn: React.FC<RadioButtonProps> = ({
           left: isActive ? `${width - knobSize - 2}px` : "2px",
           transform: "translateY(-50%)",
           transition: "left 0.3s",
-          backgroundColor:knobColor
+          backgroundColor:isActive ? knobColor : inActiveKnobColor
         }}
       />
     </button>

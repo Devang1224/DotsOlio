@@ -1,4 +1,4 @@
-import React from 'react'
+
 import SearchItem from '../../ui/SearchItem'
 import type { SearchData } from '../../types'
 import {motion,easeInOut} from "framer-motion";
